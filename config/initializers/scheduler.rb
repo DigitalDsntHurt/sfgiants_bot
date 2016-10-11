@@ -26,8 +26,8 @@ scheduler = Rufus::Scheduler.new
 giants_hashtags = [" #EvenYear", " #BeatTheCubs", " #SFGiants", " #GoGiants", " #BeatTheCubs", " #GiantsNLDS"]
 # Setup Giants twitter accounts
 giants_players = ["bbelt9","gregorblanco7","busterposey","bcraw35","sergioromo54","hunterpence","thisisdspan","joepanik","ehire21","1trevorbrown","JohnnyCueto","G_Kontos"]
-giants_commentariat = ["flemmingdave","AlexPavlovic","extrabaggs","mccoveychron","hankschulman","sfg_stats"]
-giants_other = ["ChatSFGiants","giant_potential","carmenkiew","LOLKNBR","CandlestickWill","ATTSeagull","KarlTheFog","SFGiants"]
+giants_commentariat = ["flemmingdave","AlexPavlovic","extrabaggs","mccoveychron","hankschulman","sfg_stats","@Finnertys","@AmyGGiants","CSNGiants","baseballmarty","RayWoodson680","sportslarryknbr","KRON4GRadnich"]
+giants_other = ["ChatSFGiants","giant_potential","carmenkiew","LOLKNBR","CandlestickWill","ATTSeagull","KarlTheFog","SFGiants","SFGiantsFans","BASportsGuy","GiantsUmp"]
 giants_tweeps = giants_players + giants_commentariat + giants_other
 ns_tweeps = []
 # Setup Giants Quotes
@@ -118,10 +118,12 @@ giants_media = [
 ]
 
 scheduler.in '5s' do
-	text = "Bots are Back!"
+	text = "Bots are Back! #{giants_hashtags[rand(0..giants_hashtags.length)]}"
 	media = File.new(open(Giphy.random("attack-of-the-bots").image_url))
 	if media.size.to_f / 2**20 > 2.4
-
+		client.update(text)
+	else
+		client.update(text,media)
 	end
 end
 
